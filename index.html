@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <![endif]-->
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Barhsmallows</title>
+        <meta name="description" content="A simple HTML/JS game about breeding, buying, and selling marshmallow-like plants.">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="style.css">
+    </head>
+    <body>
+        <header>
+            <h1 id="top">Barshmallows</h1>
+            <h1 id="bottom">You have -43 barshmallows</h1>
+            <h3 id="breedtimer"></h3>
+        </header>
+        <div class="actions">
+            <input type="button" value="Breed" id="breed" onclick="breed()">
+            <input type="button" value="Buy" id="buy" onclick="buy()">
+            <input type="button" value="Sell" id="sell" onclick="sell()">
+        </div>
+        <div id="inventory">
+            <p>Inventory</p>
+            <p id="money">Money: $<span id="moneyNumber">-43</span></p>
+            <div id="barshmallows">
+
+            </div>
+        </div>
+        <div class="footer">
+            <p>This game was created by Ririe Nielsen in 2022</p>
+            <p>It uses cookie functions from The Site Wizard <a href="https://thesitewizard.com">thesitewizard.com</a></p>
+            <p>It uses cookies to save your game. One game may be saved per browser.</p>
+            <div class="actions">
+                <input type="button" value="Save" id="save" onclick="save()">
+                <input type="button" value="Load" id="load" onclick="load()">
+            </div>
+        </div>
+        
+        <script src="script.js" async defer></script>
+    </body>
+</html>

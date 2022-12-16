@@ -1,0 +1,38 @@
+body {
+    background-color: #dddddd;
+    border: 3px solid #aaaaaa;
+    font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+}
+div{
+    border: 3px solid #aaaaaa;
+    margin: 3px;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    flex-direction: column;
+}
+.actions {
+    flex-direction: row;
+}
+#inventory, #barshmallows {
+    
+    padding: 3px 6px;
+}
+#barshmallows {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    width: 630px;
+}
+.barshmallow {
+    width: 300px;
+    height: 340px;
+}
+input {
+    height: 30px;
+    width: 60px;
+    font-size: 14pt;
+}
+.barshbutton{
+    width: 76px;
+}
