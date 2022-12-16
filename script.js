@@ -1,8 +1,10 @@
 
 const colors = ["Salmon","Red","Scarlet","Orange","Brown","Yellow","Lime green","Green","Cyan","Blue","Lavender","Violet","Mauve"];
 const colorHex = ["#ff5577","red","#ffaa3a","orange","#88aa00","yellow","#aaff55","green","#00dddd","blue","#ffaaff","violet",""];
-const shapes = ["Cubic","Spherical","Trapezoidal","Hexagonal","Toroidal","Like an 'E'","Amorphous","Cylindrical","Great"];
+const shapes = ["Cubic","Spherical","Trapezoidal","Hexagonal","Toroidal","Obtuse","Amorphous","Cylindrical","Great"];
+const shapeImages = ["images/shapes/cubic marshmallow.png","images/shapes/spherical marshmallow.png","images/shapes/trapezoidal marshmallow.png","images/shapes/hexagonal marshmallow.png","images/shapes/toroidal marshmallow.png","images/shapes/obtuse marshmallow.png","images/shapes/amorphous marshmallow.png","images/shapes/cylindrical marshmallow.png","images/shapes/giant marshmallow.png"];
 const textures = ["Lumpy","Smooth","Rubbery","Rough","Fluffy","Metallic","Cold","Hot","Polygonal"];
+const textureImages = ["images/textures/lumpy marshmallow.png","images/textures/smooth marshmallow.png","images/textures/rubbery marshmallow.png","images/textures/rough marshmallow.png","images/textures/fluffy marshmallow.png","images/textures/metal marshmallow.png","images/textures/transparent marshmallow.png","images/textures/rock marshmallow.png","images/textures/felt marshmallow.png"];
 let barshmallowContainer = document.getElementById("barshmallows");
 let barshmallowId = 0;
 class Barshmallow {
@@ -31,30 +33,31 @@ class Barshmallow {
 
           
         this.div.className = "barshmallow";
+        
 
         let barshmallowName = document.createElement("p");
         barshmallowName.innerHTML = "Barshmallow #"+(this.id+1);
         let barshmallowShape = document.createElement("p");
-        barshmallowShape.innerHTML = "Shape: "+shapes[this.shape];
+        barshmallowShape.innerHTML = "Shape: "+shapes[this.shape] + `(${this.shape})`;
         this.div.append(barshmallowName);
         this.div.append(barshmallowShape);
 
         let barshmallowColor = document.createElement("p");
-        barshmallowColor.innerHTML = "Color: "+colors[this.color];
+        barshmallowColor.innerHTML = "Color: "+colors[this.color] + `(${this.color})`;
         let barshmellowColorExample = 
 
         this.div.append(barshmallowColor);
         
         let barshmallowTexture = document.createElement("p");
         if(this.textured){
-            barshmallowTexture.innerHTML = "Texture: "+textures[this.texture];
+            barshmallowTexture.innerHTML = "Texture: "+textures[this.texture]+ `(${this.texture})`;
         } else {
             barshmallowTexture.innerHTML = "Texture: "+"Normal";
         }
         this.div.append(barshmallowTexture);
 
         let barshmallowheight = document.createElement("p");
-        barshmallowheight.innerHTML = "Height: "+Math.round(this.height);
+        barshmallowheight.innerHTML = "Height: "+Math.round(this.height)+ `(${this.height})`;
         this.div.append(barshmallowheight);
 
         let barshmallowWorth = document.createElement("p");
@@ -83,7 +86,7 @@ class Barshmallow {
 
     }
 }
-let barshmallows = [new Barshmallow(Math.random()*20,3,0,0.5000001,true,9)];
+let barshmallows = [new Barshmallow(Math.random()*20,3,0,0.5000001,true,-1)];
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
@@ -98,6 +101,8 @@ let mom = -1;
 let selecteds = 0;
 let breedDad = 0;
 let breedMom = 0;
+let money = 1000;
+let moneyNumber = document.getElementById("moneyNumber");
 function breed() {
     console.log(selected);
     console.log(`breed was called,selecteds:${selecteds},dad:${dad},mom:${mom},will breed:${(dad!=-1 && mom !=-1 && selecteds==2)}`);
@@ -113,8 +118,6 @@ function breed() {
         selected.push(false);
     }
 }
-let money = 1000;
-let moneyNumber = document.getElementById("moneyNumber");
 function animate() {
     requestAnimationFrame(animate);
     buyCooldown++;
