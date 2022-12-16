@@ -1,10 +1,12 @@
 
 const colors = ["Salmon","Red","Scarlet","Orange","Brown","Yellow","Lime green","Green","Cyan","Blue","Lavender","Violet","Mauve"];
 const colorHex = ["#ff5577","red","#ffaa3a","orange","#88aa00","yellow","#aaff55","green","#00dddd","blue","#ffaaff","violet",""];
+const colorRGBA = ["rgba(255,85,119,0.5)","rgba(255,0,0,0.5)","rgba(255,170,58,0.5)","rgba(255,127,0,0.5)","rgba(136,170,0,0.5)","rgba(255,255,0,0.5)","rgba(170,255,85,0.5)","rgba(0,255,0,0.5)","rgba(0,221,221,0.5)","rgba(0,0,255,0.5)","#rgba(255,175,255,0.5)","rgba(255,0,255,0.5)",""];
 const shapes = ["Cubic","Spherical","Trapezoidal","Hexagonal","Toroidal","Obtuse","Amorphous","Cylindrical","Great"];
 const shapeImages = ["images/shapes/cubic marshmallow.png","images/shapes/spherical marshmallow.png","images/shapes/trapezoidal marshmallow.png","images/shapes/hexagonal marshmallow.png","images/shapes/toroidal marshmallow.png","images/shapes/obtuse marshmallow.png","images/shapes/amorphous marshmallow.png","images/shapes/cylindrical marshmallow.png","images/shapes/giant marshmallow.png"];
 const textures = ["Lumpy","Smooth","Rubbery","Rough","Fluffy","Metallic","Cold","Hot","Polygonal"];
 const textureImages = ["images/textures/lumpy marshmallow.png","images/textures/smooth marshmallow.png","images/textures/rubbery marshmallow.png","images/textures/rough marshmallow.png","images/textures/fluffy marshmallow.png","images/textures/metal marshmallow.png","images/textures/transparent marshmallow.png","images/textures/rock marshmallow.png","images/textures/felt marshmallow.png"];
+const normalImageSrc = "images/normal marshmallow.png"
 let barshmallowContainer = document.getElementById("barshmallows");
 let barshmallowId = 0;
 class Barshmallow {
@@ -33,18 +35,38 @@ class Barshmallow {
 
           
         this.div.className = "barshmallow";
-        
+        let barshmallowImageBox = document.createElement("div");
+        let barshmallowImage = document.createElement("img");
+        barshmallowImageBox.classList.add("img");
+        let barshmallowImageSrc = () => {
+            if(this.shape == -1 && this.texture == -1)
+            {
+                return normalImageSrc;
+            } else if (this.shape > this.texture) {
+                return shapeImages[this.shape];
+            } else {
+                return textureImages[this.texture];
+            }
+        }
+        //barshmallowImage.style.backgroundImage=`url("${barshmallowImageSrc()}")`;
+        barshmallowImage.src=barshmallowImageSrc();
+        //console.log(`url("${barshmallowImageSrc()}")`);
+        this.div.style.boxShadow = `0 0px 20px 20px ${colorRGBA[this.color]} inset`;
+        barshmallowImageBox.append(barshmallowImage);
+        this.div.append(barshmallowImageBox);
+
 
         let barshmallowName = document.createElement("p");
         barshmallowName.innerHTML = "Barshmallow #"+(this.id+1);
+        this.div.append(barshmallowName);
+
         let barshmallowShape = document.createElement("p");
         barshmallowShape.innerHTML = "Shape: "+shapes[this.shape] + `(${this.shape})`;
-        this.div.append(barshmallowName);
         this.div.append(barshmallowShape);
 
         let barshmallowColor = document.createElement("p");
         barshmallowColor.innerHTML = "Color: "+colors[this.color] + `(${this.color})`;
-        let barshmellowColorExample = 
+        
 
         this.div.append(barshmallowColor);
         
@@ -65,13 +87,13 @@ class Barshmallow {
         barshmallowWorth.innerHTML = "Worth: $"+Math.round((this.height*100+(this.color%2)*500+this.shape*100));
         this.div.append(barshmallowWorth);
 
-        let selectButton = document.createElement("input");
-        selectButton.type="button";
-        selectButton.className="barshbutton";
-        selected[this.id]?selectButton.value="Select":selectButton.value="Select";
-        //selectButton.onclick=function() {select(this.id)};
-        selectButton.addEventListener("click",() => {this.toggle(this.id,this.div)},false);
-        this.div.append(selectButton);
+        // let selectButton = document.createElement("input");
+        // selectButton.type="button";
+        // selectButton.className="barshbutton";
+        // selected[this.id]?selectButton.value="Select":selectButton.value="Select";
+        // selectButton.onclick=function() {select(this.id)};
+        this.div.addEventListener("click",() => {this.toggle(this.id,this.div)},false);
+        // this.div.append(selectButton);
 
         barshmallowContainer.append(this.div);
     }
@@ -80,7 +102,7 @@ class Barshmallow {
         console.log(deeeyevee);
         console.log(`toggle was called for barshmallow #${(idee+1)},id ${idee}, selected?: ${selected[idee]}`);
         selected[idee]=!selected[idee];
-        selected[idee]?deeeyevee.style.backgroundColor="#aaffff":deeeyevee.style.backgroundColor="#dddddd";
+        selected[idee]?deeeyevee.style.backgroundColor="#FFFFFF":deeeyevee.style.backgroundColor="#686868";
         //let selectButton = this.div.childNodes[4];
 
 
@@ -177,6 +199,7 @@ function animate() {
         barshmallows[barshmallows.length-1].update();
         breeding=false;
         breedTime=0;
+        
     }
 }
 animate();

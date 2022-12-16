@@ -1,5 +1,5 @@
 body {
-    background-color: #dddddd;
+    background-color: #686868;
     border: 3px solid #aaaaaa;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
 }
@@ -26,7 +26,10 @@ div{
 }
 .barshmallow {
     width: 300px;
-    height: 340px;
+    height: fit-content;
+}
+.barshmallow > p {
+    text-shadow: 0px  0px 2px #FFF;
 }
 input {
     height: 30px;
@@ -35,4 +38,8 @@ input {
 }
 .barshbutton{
     width: 76px;
+}
+.img , img {
+    width: 150px;
+    height: 150px;
 }

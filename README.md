@@ -3,5 +3,5 @@
 
 created by Ririe Nielsen
 inspired by Rhys Nielsen
-Branch1 Branch
-mostly for debug, as well as new feature testing
+image-test Branch
+testing the new feature of having ai-generated images to represent the barshmallows.
