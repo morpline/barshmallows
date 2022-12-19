@@ -10,6 +10,7 @@ div{
     align-items: center;
     justify-content: space-around;
     flex-direction: column;
+    transition:0.3s;
 }
 .actions {
     flex-direction: row;

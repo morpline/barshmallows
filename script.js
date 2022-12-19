@@ -199,7 +199,9 @@ function animate() {
         barshmallows[barshmallows.length-1].update();
         breeding=false;
         breedTime=0;
-        
+        selected.forEach(s => {
+            s = false;
+        });
     }
 }
 animate();
