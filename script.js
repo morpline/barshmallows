@@ -127,8 +127,9 @@ let money = 1000;
 let moneyNumber = document.getElementById("moneyNumber");
 function breed() {
     console.log(selected);
-    console.log(`breed was called,selecteds:${selecteds},dad:${dad},mom:${mom},will breed:${(dad!=-1 && mom !=-1 && selecteds==2)}`);
-    if(dad!=-1 && mom !=-1 && selecteds==2)
+    const willBreed = (barshmallows[dad]!=null && barshmallows[mom]!=null);
+    console.log(`breed was called,selecteds:${selecteds},dad:${dad},mom:${mom},will breed:${(willBreed && selecteds==2)}`);
+    if(willBreed && selecteds==2)
     {
         breeding=true;
         breedDad=dad;
@@ -136,7 +137,6 @@ function breed() {
         breedLength=(barshmallows[dad].luck+barshmallows[mom].luck)*1000;
         
         buyCooldown+=15;
-        barshmallowId++;
         selected.push(false);
     }
 }
@@ -196,6 +196,7 @@ function animate() {
                             -1
             )
         );
+        barshmallowId++;
         barshmallows[barshmallows.length-1].update();
         breeding=false;
         breedTime=0;
