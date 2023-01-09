@@ -29,11 +29,14 @@ class Barshmallow {
         this.div = document.createElement("div");
         this.div.id=(this.id);
     }
-    update () {
-
-        //selected.push(0);
-
-          
+    onCreate() {
+        this.createDiv();
+        this.appendDiv();
+    }
+    appendDiv () {
+        barshmallowContainer.append(this.div);
+    }
+    createDiv () {
         this.div.className = "barshmallow";
         let barshmallowImageBox = document.createElement("div");
         let barshmallowImage = document.createElement("img");
@@ -95,7 +98,6 @@ class Barshmallow {
         this.div.addEventListener("click",() => {this.toggle(this.id,this.div)},false);
         // this.div.append(selectButton);
 
-        barshmallowContainer.append(this.div);
     }
     toggle(idee,deeeyevee){
         //this.div=document.getElementById(`${idee}`);
@@ -112,7 +114,7 @@ let barshmallows = [new Barshmallow(Math.random()*20,3,0,0.5000001,true,-1)];
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
-barshmallows[0].update();
+barshmallows[0].onCreate();
 let buyCooldown = 0;
 let buyPrice = 100;
 let breeding = false;
@@ -170,6 +172,13 @@ function animate() {
     let bottom = document.getElementById("bottom");
     bottom.innerHTML = `You have ${numOfBarshmallows} barshmallows`;   
     let breedtimer = document.getElementById("breedtimer");
+    barshmallowContainer.childNodes.forEach((node,index) => {
+
+    })
+}
+function animate() {
+    requestAnimationFrame(animate);
+    buyCooldown++;
     if(breeding) {
         breedTime++;
         breedtimer.innerHTML=`Breeding... ${Math.round((breedTime/breedLength)*100)}%`;
@@ -196,8 +205,7 @@ function animate() {
                             -1
             )
         );
-        barshmallowId++;
-        barshmallows[barshmallows.length-1].update();
+        barshmallows[barshmallows.length-1].onCreate();
         breeding=false;
         breedTime=0;
         selected.forEach(s => {
@@ -220,20 +228,20 @@ function buy () {
         {
             barshmallows.push(new Barshmallow(Math.random()*20,1+Math.floor(Math.random()*6)*2,1,Math.random()));
             selected.push(false);
-            barshmallows[barshmallows.length-1].update();
+            barshmallows[barshmallows.length-1].onCreate();
             barshmallowId++;
         } else {
             if(Math.random>0.5)
             {
                 barshmallows.push(new Barshmallow(Math.random()*20,1+Math.floor(Math.random()*6)*2,1,Math.random()));
                 selected.push(false);
-                barshmallows[barshmallows.length-1].update();
+                barshmallows[barshmallows.length-1].onCreate();
                 barshmallowId++;
             } else {
                 console.log(hidden);
                 barshmallows[hidden].visible=true;
                 selected[hidden]=false;
-                barshmallows[hidden].update();
+                barshmallows[hidden].appendDiv();
             }
         }
         money-=buyPrice;
