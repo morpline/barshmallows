@@ -10,7 +10,7 @@ const normalImageSrc = "images/normal marshmallow.png"
 let barshmallowContainer = document.getElementById("barshmallows");
 const versionmarker = document.getElementById("versionmarker");
 //versionmarker.append("JS Version Alpha 3.2");
-versionmarker.after("JS Version Alpha 3.2")
+versionmarker.after("JS Version Alpha 3.2.1")
 let barshmallowId = 0;
 class Barshmallow {
     constructor (height=(Math.random()*20), color=0, shape=0, luck=0.5,visible=true,texture=-1) {
@@ -319,6 +319,8 @@ function load() {
 }
 function newGame() {
     money = 1000;
+    barshmallowId=0;
     barshmallows = [new Barshmallow(Math.random()*20,3,-1,0.5000001,true,-1)];
+    barshmallowId++;
     update();
 }
