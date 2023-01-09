@@ -29,22 +29,13 @@ class Barshmallow {
         let barshmallowName = document.createElement("p");
         barshmallowName.innerHTML = "Barshmallow #"+(this.id+1);
         let barshmallowShape = document.createElement("p");
-<<<<<<< Updated upstream
-        barshmallowShape.innerHTML = "Shape: "+shapes[this.shape];
-        this.div.append(barshmallowName);
-=======
         
         barshmallowShape.innerHTML = "Shape: "+(this.shape==-1?"Normal":shapes[this.shape]);
->>>>>>> Stashed changes
         this.div.append(barshmallowShape);
 
         let barshmallowColor = document.createElement("p");
         barshmallowColor.innerHTML = "Color: "+colors[this.color];
-<<<<<<< Updated upstream
-        let barshmellowColorExample = 
-=======
         
->>>>>>> Stashed changes
 
         this.div.append(barshmallowColor);
         
@@ -80,22 +71,14 @@ class Barshmallow {
         console.log(deeeyevee);
         console.log(`toggle was called for barshmallow #${(idee+1)},id ${idee}, selected?: ${selected[idee]}`);
         selected[idee]=!selected[idee];
-<<<<<<< Updated upstream
-        selected[idee]?deeeyevee.style.backgroundColor="#aaffff":deeeyevee.style.backgroundColor="#dddddd";
-=======
         selected[idee]?deeeyevee.style.backgroundColor="#FFFFFF":deeeyevee.style.backgroundColor="#686868";
         selected[idee]?deeeyevee.style.color="#000000":deeeyevee.style.color="#FFFFFF";
->>>>>>> Stashed changes
         //let selectButton = this.div.childNodes[4];
         update();
 
     }
 }
-<<<<<<< Updated upstream
-let barshmallows = [new Barshmallow(Math.random()*20,3,0,0.5000001,true,9)];
-=======
 let barshmallows = [new Barshmallow(Math.random()*20,3,-1,0.5000001,true,-1)];
->>>>>>> Stashed changes
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
@@ -125,15 +108,7 @@ function breed() {
         selected.push(false);
     }
 }
-<<<<<<< Updated upstream
-let money = 1000;
-let moneyNumber = document.getElementById("moneyNumber");
-function animate() {
-    requestAnimationFrame(animate);
-    buyCooldown++;
-=======
 function update() {
->>>>>>> Stashed changes
     moneyNumber.innerHTML=""+money;
     dad=-1;
     mom=-1;
@@ -204,13 +179,10 @@ function animate() {
         barshmallows[barshmallows.length-1].update();
         breeding=false;
         breedTime=0;
-<<<<<<< Updated upstream
-=======
         selected.forEach(s => {
             s = false;
         });
         update();
->>>>>>> Stashed changes
     }
 }
 animate();

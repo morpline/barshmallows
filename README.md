@@ -2,9 +2,6 @@
  an odd plant breeding game
 
 created by Ririe Nielsen
-<<<<<<< Updated upstream
-inspired by Rhys Nielsen
-=======
 inspired by Rhys Nielsen
 # Update Alpha 2 Notes
 Fixed title from "Barhsmallows" to "Barshmallows"
@@ -16,4 +13,3 @@ made text easier to read
 # Update Alpha 1 Notes
 fixed breeding from not working
 fixed new barshmallows from breeding getting wrong IDs
->>>>>>> Stashed changes

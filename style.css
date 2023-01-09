@@ -27,12 +27,8 @@ div{
 }
 .barshmallow {
     width: 300px;
-<<<<<<< Updated upstream
-    height: 340px;
-=======
     height: fit-content;
     color:#FFFFFF;
->>>>>>> Stashed changes
 }
 input {
     height: 30px;
