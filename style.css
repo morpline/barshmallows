@@ -2,6 +2,7 @@ body {
     background-color: #dddddd;
     border: 3px solid #aaaaaa;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    color:#FFFFFF;
 }
 div{
     border: 3px solid #aaaaaa;
@@ -26,7 +27,12 @@ div{
 }
 .barshmallow {
     width: 300px;
+<<<<<<< Updated upstream
     height: 340px;
+=======
+    height: fit-content;
+    color:#FFFFFF;
+>>>>>>> Stashed changes
 }
 input {
     height: 30px;

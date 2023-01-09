@@ -12,14 +12,8 @@ class Barshmallow {
         this.shape=shape;
         this.luck=luck;
         this.visible = visible;
-        if(texture!=-1)
-        {
-            this.texture=texture;
-            this.textured=true;
-        } else {
-            this.textured=false;
-            this.texture=-1;
-        }
+        this.textured=(texture!=-1)
+        this.texture=texture;
         this.id=barshmallowId;
         //console.log(this.id);
         this.div = document.createElement("div");
@@ -35,13 +29,22 @@ class Barshmallow {
         let barshmallowName = document.createElement("p");
         barshmallowName.innerHTML = "Barshmallow #"+(this.id+1);
         let barshmallowShape = document.createElement("p");
+<<<<<<< Updated upstream
         barshmallowShape.innerHTML = "Shape: "+shapes[this.shape];
         this.div.append(barshmallowName);
+=======
+        
+        barshmallowShape.innerHTML = "Shape: "+(this.shape==-1?"Normal":shapes[this.shape]);
+>>>>>>> Stashed changes
         this.div.append(barshmallowShape);
 
         let barshmallowColor = document.createElement("p");
         barshmallowColor.innerHTML = "Color: "+colors[this.color];
+<<<<<<< Updated upstream
         let barshmellowColorExample = 
+=======
+        
+>>>>>>> Stashed changes
 
         this.div.append(barshmallowColor);
         
@@ -77,13 +80,22 @@ class Barshmallow {
         console.log(deeeyevee);
         console.log(`toggle was called for barshmallow #${(idee+1)},id ${idee}, selected?: ${selected[idee]}`);
         selected[idee]=!selected[idee];
+<<<<<<< Updated upstream
         selected[idee]?deeeyevee.style.backgroundColor="#aaffff":deeeyevee.style.backgroundColor="#dddddd";
+=======
+        selected[idee]?deeeyevee.style.backgroundColor="#FFFFFF":deeeyevee.style.backgroundColor="#686868";
+        selected[idee]?deeeyevee.style.color="#000000":deeeyevee.style.color="#FFFFFF";
+>>>>>>> Stashed changes
         //let selectButton = this.div.childNodes[4];
-
+        update();
 
     }
 }
+<<<<<<< Updated upstream
 let barshmallows = [new Barshmallow(Math.random()*20,3,0,0.5000001,true,9)];
+=======
+let barshmallows = [new Barshmallow(Math.random()*20,3,-1,0.5000001,true,-1)];
+>>>>>>> Stashed changes
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
@@ -113,11 +125,15 @@ function breed() {
         selected.push(false);
     }
 }
+<<<<<<< Updated upstream
 let money = 1000;
 let moneyNumber = document.getElementById("moneyNumber");
 function animate() {
     requestAnimationFrame(animate);
     buyCooldown++;
+=======
+function update() {
+>>>>>>> Stashed changes
     moneyNumber.innerHTML=""+money;
     dad=-1;
     mom=-1;
@@ -145,6 +161,11 @@ function animate() {
     let bottom = document.getElementById("bottom");
     bottom.innerHTML = `You have ${numOfBarshmallows} barshmallows`;   
     let breedtimer = document.getElementById("breedtimer");
+
+}
+function animate() {
+    requestAnimationFrame(animate);
+    buyCooldown++;
     if(breeding) {
         breedTime++;
         breedtimer.innerHTML=`Breeding... ${Math.round((breedTime/breedLength)*100)}%`;
@@ -156,27 +177,44 @@ function animate() {
         barshmallows.push(
             new Barshmallow(
                 (barshmallows[breedDad].height*Math.random())/2+(barshmallows[breedMom].height*Math.random())/2,
-                Math.round((barshmallows[breedDad].color/2)+(barshmallows[breedMom].color/2)+(Math.random()*2)-1),
-                Math.round(barshmallows[breedDad].shape+barshmallows[breedMom].shape+Math.random()),
+                //Math.round((barshmallows[breedDad].color/2)+(barshmallows[breedMom].color/2)+(Math.random()*2)-1),
+                barshmallows[breedDad].color==barshmallows[breedMom].color?
+                    barshmallows[breedDad].color+Math.round((Math.random()-0.5)*2):
+                    (Math.random()>0.5)?
+                        barshmallows[breedDad].color:
+                        barshmallows[breedMom].color,
+                //Math.round(barshmallows[breedDad].shape+barshmallows[breedMom].shape+Math.random()),
+                barshmallows[breedDad].shape==barshmallows[breedMom].shape?
+                    barshmallows[breedDad].shape+Math.round((Math.random()-0.5)*2):
+                    (Math.random()>0.5)?
+                        barshmallows[breedDad].shape:
                 Math.random(),
                 true,
-                barshmallows[breedDad].textured?
-                    barshmallows[breedMom].textured?
-                        Math.floor(barshmallows[breedDad].texture/2+barshmallows[breedMom]/2)+1:
-                        barshmallows[breedDad].texture:
-                    barshmallows[breedMom].textured?
-                        barshmallows[breedMom].texture:
-                        (Math.random>0.1)?
-                            0:
-                            -1
+                barshmallows[breedDad].textured?//if dad is textured
+                    barshmallows[breedMom].textured?//and mom is textured
+                        Math.floor(barshmallows[breedDad].texture/2+barshmallows[breedMom]/2)+1://set texture to avg of mom's and dad's plus one
+                        barshmallows[breedDad].texture:// if dad is but mom isn't, set texture to dad's
+                    barshmallows[breedMom].textured?// if dad isn't but mom is
+                        barshmallows[breedMom].texture://set texture to mom's
+                        (Math.random>0.1)?//otherwise randomly set it to
+                            0://Cubic
+                            -1// or nothing.
             )
         );
         barshmallows[barshmallows.length-1].update();
         breeding=false;
         breedTime=0;
+<<<<<<< Updated upstream
+=======
+        selected.forEach(s => {
+            s = false;
+        });
+        update();
+>>>>>>> Stashed changes
     }
 }
 animate();
+update();
 function buy () {
     console.log(`Buy was called, cooldown is ${buyCooldown}, price is ${buyPrice}, bought? ${buyCooldown>buyPrice}`);
     if(buyCooldown>buyPrice && money>buyPrice)
@@ -189,14 +227,14 @@ function buy () {
         })
         if(hidden=-1)
         {
-            barshmallows.push(new Barshmallow(Math.random()*20,1+Math.floor(Math.random()*6)*2,1,Math.random()));
+            barshmallows.push(new Barshmallow(Math.random()*20,1+Math.floor(Math.random()*6)*2,-1,Math.random(),true,-1));
             selected.push(false);
             barshmallows[barshmallows.length-1].update();
             barshmallowId++;
         } else {
             if(Math.random>0.5)
             {
-                barshmallows.push(new Barshmallow(Math.random()*20,1+Math.floor(Math.random()*6)*2,1,Math.random()));
+                barshmallows.push(new Barshmallow(Math.random()*20 ,1+Math.floor(Math.random()*6)*2 ,-1 ,Math.random() ,true ,-1));
                 selected.push(false);
                 barshmallows[barshmallows.length-1].update();
                 barshmallowId++;
