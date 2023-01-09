@@ -1,5 +1,5 @@
 body {
-    background-color: #dddddd;
+    background-color: #686868;
     border: 3px solid #aaaaaa;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:#FFFFFF;
@@ -37,4 +37,8 @@ input {
 }
 .barshbutton{
     width: 76px;
+}
+.img , img {
+    width: 150px;
+    height: 150px;
 }
