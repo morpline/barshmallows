@@ -8,6 +8,9 @@ const textures = ["Lumpy","Smooth","Rubbery","Rough","Fluffy","Metallic","Cold",
 const textureImages = ["images/textures/lumpy marshmallow.png","images/textures/smooth marshmallow.png","images/textures/rubbery marshmallow.png","images/textures/rough marshmallow.png","images/textures/fluffy marshmallow.png","images/textures/metal marshmallow.png","images/textures/transparent marshmallow.png","images/textures/rock marshmallow.png","images/textures/felt marshmallow.png"];
 const normalImageSrc = "images/normal marshmallow.png"
 let barshmallowContainer = document.getElementById("barshmallows");
+const versionmarker = document.getElementById("versionmarker");
+//versionmarker.append("JS Version Alpha 3.2");
+versionmarker.after("JS Version Alpha 3.2")
 let barshmallowId = 0;
 class Barshmallow {
     constructor (height=(Math.random()*20), color=0, shape=0, luck=0.5,visible=true,texture=-1) {
