@@ -32,16 +32,14 @@ div{
 }
 input {
     height: 30px;
-    width: 60px;
+    padding-right: 8px;
+    padding-left: 8px;
     font-size: 14pt;
-}
-.barshbutton{
-    width: 76px;
 }
 .img , img {
     width: 150px;
     height: 150px;
 }
 #versionmarker::after {
-    content: " CSS Version Alpha 3.2";
+    content: " CSS Version Alpha 3.3";
 }

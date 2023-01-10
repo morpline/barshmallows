@@ -9,18 +9,31 @@ const textureImages = ["images/textures/lumpy marshmallow.png","images/textures/
 const normalImageSrc = "images/normal marshmallow.png"
 let barshmallowContainer = document.getElementById("barshmallows");
 const versionmarker = document.getElementById("versionmarker");
-//versionmarker.append("JS Version Alpha 3.2");
-versionmarker.after("JS Version Alpha 3.2.1")
+const JSversion = document.createElement("h4");
+JSversion.innerHTML=("JS Version Alpha 3.3");
+versionmarker.after(JSversion);
 let barshmallowId = 0;
 class Barshmallow {
     constructor (height=(Math.random()*20), color=0, shape=0, luck=0.5,visible=true,texture=-1) {
         this.height=height;
-        this.color=color;
-        this.shape=shape;
+        if(color <0){
+            this.color = 0;
+        }else{ 
+            this.color=color;
+        }
+        if(shape < -1){
+            this.shape = -1;
+        }else{ 
+            this.shape=shape;
+        }
         this.luck=luck;
         this.visible = visible;
         this.textured=(texture!=-1)
-        this.texture=texture;
+        if(texture <-1){
+            this.texture = -1;
+        }else{ 
+            this.texture=texture;
+        }
         this.id=barshmallowId;
         //console.log(this.id);
         this.div = document.createElement("div");
@@ -100,7 +113,8 @@ class Barshmallow {
 }
 let money = JSON.parse(localStorage.getItem("money")) || 1000;
 //let barshmallows = [new Barshmallow(Math.random()*20,3,-1,0.5000001,true,-1)];
-let barshmallows = JSON.parse(localStorage.getItem('barshmallows')) || [new Barshmallow(Math.random()*20,3,-1,0.5000001,true,-1)];
+let barshmallows = [];
+
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
@@ -126,19 +140,40 @@ let breedMom = 0;
 // barshmallowContainer.insertAdjacentElement("beforebegin",beans)
 // console.log(barshmallowContainer.children);
 // //END TEST SPACE
-
+function convertGenericObjectToBarshmallow ({height=0,color=0,shape=-1,luck=0.5,visible=true,texture=-1}) {
+    let converted = new Barshmallow(height,color,shape,luck,visible,texture);
+    console.log(converted);
+    return converted;
+}
 function populateList(plates = [], platesList) {
     // platesList = plates.map((plate, i) => {
     //     return plate.div;
     // }).join('');
-    for(let i =0;i<plates.length;i++) {
-        if(platesList.children[i]==null)
+    let j = 0;//plate div the loop is looking at
+    let i = 0;//plate the first for loop is checking
+    for(i =0;i<plates.length;i++) {
+        console.log(`Checking plate #${i},Visible:${plates[i].visible},Does div exist? ${platesList.children[j]!=null}, Outcome:`);
+        if(plates[i].visible==true)//if plate is visible
         {
-            platesList.append(plates[i].div);
-        } else {
-            platesList.children[i].replaceWith(plates[i].div)
+            if(platesList.children[j]==null)//if plate div doesn't exist
+            {
+                platesList.append(plates[i].div);// create it
+                console.log("add it (you shouldn't get a 'replaced' after this)");
+            } else {// other wise
+                platesList.children[j].replaceWith(plates[i].div);//replace the existing one
+                console.log(`replaced plate div ${j}`);
+            }
+            j++;
         }
     }
+    j++;
+    console.log(`I:${i};J:${j};List Length:${platesList.children.length}`);
+    if(j<platesList.children.length)
+        while(j<platesList.children.length) {
+            platesList.children[j].remove();
+            console.log(`Removed Child #${j}`);
+            j++;
+        }
 }
 let moneyNumber = document.getElementById("moneyNumber");
 
@@ -203,19 +238,24 @@ function animate() {
         barshmallows.push(
             new Barshmallow(
                 (barshmallows[breedDad].height*Math.random())/2+(barshmallows[breedMom].height*Math.random())/2,
+
                 //Math.round((barshmallows[breedDad].color/2)+(barshmallows[breedMom].color/2)+(Math.random()*2)-1),
                 barshmallows[breedDad].color==barshmallows[breedMom].color?
                     barshmallows[breedDad].color+Math.round((Math.random()-0.5)*2):
                     (Math.random()>0.5)?
                         barshmallows[breedDad].color:
                         barshmallows[breedMom].color,
+
                 //Math.round(barshmallows[breedDad].shape+barshmallows[breedMom].shape+Math.random()),
                 barshmallows[breedDad].shape==barshmallows[breedMom].shape?
                     barshmallows[breedDad].shape+Math.round((Math.random()-0.5)*2):
                     (Math.random()>0.5)?
                         barshmallows[breedDad].shape:
+                        barshmallows[breedMom].shape,
                 Math.random(),
+
                 true,
+
                 barshmallows[breedDad].textured?//if dad is textured
                     barshmallows[breedMom].textured?//and mom is textured
                         Math.floor(barshmallows[breedDad].texture/2+barshmallows[breedMom]/2)+1://set texture to avg of mom's and dad's plus one
@@ -300,6 +340,7 @@ function sell() {
             barshmallows[dad].shape*100
         ));
         barshmallows[dad].visible=false;
+        console.log(`Barshmallow #${dad} was sold`);
         selected[dad]=false;
         // barshmallowContainer.removeChild(document.getElementById(""+dad));
         update();
@@ -312,10 +353,19 @@ function save() {
     localStorage.setItem('barshmallows', JSON.stringify(barshmallows));
     localStorage.setItem('money', JSON.stringify(money));
 }
+
 function load() {
     //load save
-    barshmallows = JSON.parse(localStorage.getItem('barshmallows'));
+    barshmallows = [];
+    barshmallowId=0;
+    let tempBarshes = JSON.parse(localStorage.getItem('barshmallows')) || [];
+    tempBarshes.forEach(bjec => {
+        // selected.push
+        barshmallows.push(convertGenericObjectToBarshmallow(bjec));
+        barshmallowId++;
+    })
     money = JSON.parse(localStorage.getItem('money'));
+    update();
 }
 function newGame() {
     money = 1000;
@@ -324,3 +374,4 @@ function newGame() {
     barshmallowId++;
     update();
 }
+load();
