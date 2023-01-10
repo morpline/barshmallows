@@ -25,6 +25,7 @@
         </div>
         <div id="inventory">
             <p>Inventory</p>
+            <input type="button" value="Refresh" id="refresh" onclick="update()">
             <p id="money">Money: $<span id="moneyNumber"></span></p>
             <div id="barshmallows">
                 
@@ -33,11 +34,11 @@
         <div class="footer">
             <p>This game was created by Ririe Nielsen in 2022</p>
             <div class="actions">
-                <input type="button" value="Save" id="save" onclick="" style="background-color:#AAA">
-                <input type="button" value="Load" id="load" onclick="" style="background-color:#AAA">
-                <input type="button" value="New Game" id="newGame" onclick="" style="background-color:#AAA">
+                <input type="button" value="Save" id="save" onclick="save()">
+                <input type="button" value="Load" id="load" onclick="load()">
+                <input type="button" value="New Game" id="newGame" onclick="newGame()">
             </div>
-            <h4 id="versionmarker">HTML Version Alpha 3.2.1</h4>
+            <h4 id="versionmarker">HTML Version Alpha 3.3</h4>
         </div>
         
         <script src="script.js" async defer></script>
