@@ -5,6 +5,10 @@ created by Ririe Nielsen,
 
 inspired by Rhys Nielsen
 
+# Update Alpha 4.0.1
+
+Added changes made in Alpha 4 to the README that didn't get added.
+
 # Update Alpha 4 Notes
 
 Added achievement system and 13 achievements. (One still exists in the code, with no way to earn it.)
@@ -13,7 +17,7 @@ Added Scrutiny system, where you can find out your barshmallows' luck, height, a
 
 Added tabs to view game or achievements.
 
-Added icon
+Added page icon
 
 Added 1 sound effect
 
@@ -22,6 +26,8 @@ Added link to github for reporting bugs
 Added custom BGM (BGM is owned by Ririe Nielsen and is considered seperate from Barshmallows.)
 
 Changed colors to be less extreme
+
+Changed Scarlet color to be more scarlet
 
 Fixed selling barshmallows (again)
 
