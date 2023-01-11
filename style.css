@@ -1,5 +1,5 @@
 body {
-    background-color: #686868;
+    background-color: #303030;
     border: 3px solid #aaaaaa;
     font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
     color:#FFFFFF;
@@ -29,17 +29,48 @@ div{
     width: 300px;
     height: fit-content;
     color:#FFFFFF;
+    background-color: #686868;
 }
-input {
+input,.tab {
     height: 30px;
     padding-right: 8px;
     padding-left: 8px;
     font-size: 14pt;
+    background-color: #aaaadd;
+    color: #686868;
+    border: 5px solid #686868;
+    border-radius: 0%;
+    
+}
+input:hover , .tab:hover {
+    background-color: #FFFFFF;
+    border: 5px solid #aaaaaa;
 }
 .img , img {
     width: 150px;
     height: 150px;
 }
 #versionmarker::after {
-    content: " CSS Version Alpha 3.3";
+    content: " CSS Version Alpha 4";
+}
+a{
+    text-decoration: none;
+    color: #aaaadd;
+}
+a:hover{
+    color: #ffffff;
+}
+#tabs {
+    flex-direction: row;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+}
+.tabb {
+    height:0px;
+    scale: 0%;
+}
+.open {
+    height:fit-content;
+    scale: 100%;
 }
