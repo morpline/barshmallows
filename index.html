@@ -8,8 +8,10 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Barshmallows</title>
+        <link rel="icon" href="icon.bmp">
         <meta name="description" content="A simple HTML/JS game about breeding, buying, and selling marshmallow-like plants.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
+        
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
@@ -17,30 +19,50 @@
             <h1 id="top">Barshmallows</h1>
             <h1 id="bottom">You have -43 barshmallows (if you see this javascript is not working)</h1>
             <h3 id="breedtimer"></h3>
+            <h3 id="achievement"></h3>
         </header>
-        <div class="actions">
-            <input type="button" value="Breed" id="breed" onclick="breed()">
-            <input type="button" value="Buy" id="buy" onclick="buy()">
-            <input type="button" value="Sell" id="sell" onclick="sell()">
-        </div>
-        <div id="inventory">
-            <p>Inventory</p>
-            <input type="button" value="Refresh" id="refresh" onclick="update()">
-            <p id="money">Money: $<span id="moneyNumber"></span></p>
-            <div id="barshmallows">
-                
+        <header id="tabs">
+            <div class="tab" id="game">Game</div>
+            <div class="tab" id="ach">Achievements</div>
+        </header>
+        <div id="game-tab" class="tabb">
+            <div class="actions">
+                <input type="button" value="Breed" id="breed" onclick="breed()">
+                <input type="button" value="Buy" id="buy" onclick="buy()">
+                <input type="button" value="Sell" id="sell" onclick="sell()">
+                <input type="button" value="Scrutinize $100" id="scrutiny" onclick="scrutiny()">
+            </div>
+            <div id="inventory">
+                <p>Inventory</p>
+                <input type="button" value="Refresh" id="refresh" onclick="update()">
+                <p id="money">Money: $<span id="moneyNumber"></span></p>
+                <div id="barshmallows">
+                    
+                </div>
             </div>
         </div>
+        <div id="achievements-tab" class="tabb">
+            <div class="achievements">
+                <p>Achievements</p>
+                <div id="achievements">
+                </div>
+            </div>
+
+        </div>
+        <audio src="SFX/Achievement_complete.mp3" id="sfx"></audio>
+        <audio src="SFX/Initial_Hum_Barshmallows_Theme.mp3" autoplay loop></audio>
         <div class="footer">
             <p>This game was created by Ririe Nielsen in 2022</p>
+            <a href="https://github.com/morpline/barshmallows/issues">Report a bug</a>
             <div class="actions">
                 <input type="button" value="Save" id="save" onclick="save()">
                 <input type="button" value="Load" id="load" onclick="load()">
                 <input type="button" value="New Game" id="newGame" onclick="newGame()">
             </div>
-            <h4 id="versionmarker">HTML Version Alpha 3.3</h4>
+            <h4 id="versionmarker">HTML Version Alpha 4</h4>
         </div>
         
+        <script src="achievements.js" async defer></script>
         <script src="script.js" async defer></script>
     </body>
 </html>
