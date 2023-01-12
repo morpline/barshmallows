@@ -35,6 +35,7 @@
             <div id="inventory">
                 <p>Inventory</p>
                 <input type="button" value="Refresh" id="refresh" onclick="update()">
+                <input type="button" value="Deselect" id="deselect" onclick="deselect()">
                 <p id="money">Money: $<span id="moneyNumber"></span></p>
                 <div id="barshmallows">
                     
@@ -49,6 +50,25 @@
             </div>
 
         </div>
+        <div id="quests-tab" class="tabb">
+            <div class="quests">
+                <p>Quests</p>
+                <div id="quests">
+                    <div class="quest">
+                        <p class="header">PERSON requests a barshmallow</p>
+                        <p class="reqs-title">1 barshmallow with:</p>
+                        <ul class="reqs">
+                            <li class="req">COLOR color</li>
+                            <li class="req">TEXTURE texture</li>
+                            <li class="req">HEIGHT height</li>
+                            <li class="req">LUCK luck</li>
+                        </ul>
+                        <p class="reward">Reward: $#####</p>
+                        <p class="incomplete">incomplete</p>
+                    </div>
+                </div>
+            </div>
+        </div>
         <audio src="SFX/Achievement_complete.mp3" id="sfx"></audio>
         <audio src="SFX/Initial_Hum_Barshmallows_Theme.mp3" autoplay loop></audio>
         <div class="footer">
@@ -59,7 +79,7 @@
                 <input type="button" value="Load" id="load" onclick="load()">
                 <input type="button" value="New Game" id="newGame" onclick="newGame()">
             </div>
-            <h4 id="versionmarker">HTML Version Alpha 4</h4>
+            <h4 id="versionmarker">HTML Version Alpha 4.2</h4>
         </div>
         
         <script src="achievements.js" async defer></script>

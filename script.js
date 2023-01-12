@@ -1,7 +1,7 @@
 //DATA
-const colors = ["Salmon","Red","Scarlet","Orange","Brown","Yellow","Lime green","Green","Cyan","Blue","Lavender","Violet","Mauve"];
-const colorHex = ["#ff5577","red","#ffaa3a","orange","#88aa00","yellow","#aaff55","green","#00dddd","blue","#ffaaff","violet",""];
-const colorRGBA = ["rgba(255,51,0,0.5)","rgba(255,0,0,0.5)","rgba(255,170,58,0.5)","rgba(255,127,0,0.5)","rgba(136,170,0,0.5)","rgba(255,255,0,0.5)","rgba(170,255,85,0.5)","rgba(0,255,0,0.5)","rgba(0,221,221,0.5)","rgba(0,0,255,0.5)","#rgba(255,175,255,0.5)","rgba(255,0,255,0.5)",""];
+const colors = ["Salmon","Red","Scarlet","Orange","Beige","Yellow","Lime green","Green","Cyan","Blue","Lavender","Violet","Mauve"];
+const colorHex = ["#ff5577","red","#ffaa3a","orange","#f5f5dc","yellow","#aaff55","green","#00dddd","blue","#ffaaff","violet",""];
+const colorRGBA = ["rgba(255,51,0,0.5)","rgba(255,0,0,0.5)","rgba(255,170,58,0.5)","rgba(255,127,0,0.5)","rgba(245,245,220,1)","rgba(255,255,0,0.5)","rgba(170,255,85,0.5)","rgba(0,255,0,0.5)","rgba(0,221,221,0.5)","rgba(0,0,255,0.5)","#rgba(255,175,255,0.5)","rgba(255,0,255,0.5)",""];
 const shapes = ["Cubic","Spherical","Trapezoidal","Hexagonal","Toroidal","Obtuse","Amorphous","Cylindrical","Great"];
 const shapeImages = ["images/shapes/cubic marshmallow.png","images/shapes/spherical marshmallow.png","images/shapes/trapezoidal marshmallow.png","images/shapes/hexagonal marshmallow.png","images/shapes/toroidal marshmallow.png","images/shapes/obtuse marshmallow.png","images/shapes/amorphous marshmallow.png","images/shapes/cylindrical marshmallow.png","images/shapes/giant marshmallow.png"];
 const textures = ["Lumpy","Smooth","Rubbery","Rough","Fluffy","Metallic","Cold","Hot","Polygonal"];
@@ -10,7 +10,7 @@ const normalImageSrc = "images/normal marshmallow.png";
 //VERSION
 const versionmarker = document.getElementById("versionmarker");
 const JSversion = document.createElement("h4");
-JSversion.innerHTML=("JS Version Alpha 4.1");
+JSversion.innerHTML=("JS Version Alpha 4.2");
 versionmarker.after(JSversion);
 //GAME
 let sfx = document.getElementById("sfx");
@@ -51,6 +51,7 @@ class Barshmallow {
         this.div.className = "barshmallow";
         let barshmallowImageBox = document.createElement("div");
         let barshmallowImage = document.createElement("img");
+        this.setToggledColor(this.id,this.div);
         barshmallowImageBox.classList.add("img");
         let barshmallowImageSrc = () => {
             if(this.shape == -1 && this.texture == -1)
@@ -118,11 +119,13 @@ class Barshmallow {
         // console.log(deeeyevee);
         // console.log(`toggle was called for barshmallow #${(idee+1)},id ${idee}, selected?: ${selected[idee]}`);
         selected[idee]=!selected[idee];
-        selected[idee]?deeeyevee.style.backgroundColor="#aaaaaa":deeeyevee.style.backgroundColor="#686868";
-        selected[idee]?deeeyevee.style.color="#000000":deeeyevee.style.color="#FFFFFF";
+        this.setToggledColor(idee,deeeyevee);
         //let selectButton = this.div.childNodes[4];
         update();
-
+    }
+    setToggledColor(e,d){
+        selected[e]?d.style.backgroundColor="#aaaaaa":d.style.backgroundColor="#686868";
+        selected[e]?d.style.color="#000000":d.style.color="#FFFFFF";
     }
 }
 let money = JSON.parse(localStorage.getItem("money")) || 1000;
@@ -330,7 +333,7 @@ function scrutiny () {
 }
 function buy () {
     // console.log(`Buy was called, cooldown is ${buyCooldown}, price is ${buyPrice}, bought? ${buyCooldown>buyPrice}`);
-    if(buyCooldown>buyPrice && money>buyPrice)
+    if(money>buyPrice)
     {
         let hidden = -1;
         barshmallows.forEach((barsh,index) => {
@@ -395,6 +398,12 @@ function sell() {
         completeAchievement(dad.worth>2000,6);
         completeAchievement(dad.worth>4000,7);
     }
+}
+function deselect(){
+    // selected.forEach(s => {s=false});
+    selected = selected.map(() => {return false});
+    barshmallows.forEach(s => s.update());
+    update();
 }
 //Save FUNCTIONS
 function save() {

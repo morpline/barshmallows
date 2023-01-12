@@ -13,6 +13,8 @@ var achievements = [
     false,//11 Have a barshmallow scrutinized
     false,//12 Find out you have a barshmallow with almost perfect luck
     false,//13 Get the Perfect Barshmallow (>0.9 luck, great shape,polygonal texture,>19 height,)
+    false,//14 Get a Biege barshmallow
+    false,//15 Complete a Quest
 ];
 const achievementMessages = [
     "Bought a Barshmallow",//done
@@ -28,10 +30,13 @@ const achievementMessages = [
     "Played for 2 hours",
     "Scrutinized a Barshmallow",//done
     "Find a barshmallow with perfect luck",//done
-    "Got the perfect barshmallow"//done
+    "Got the perfect barshmallow",//done
+    "Got a Biege barshmallows",//done
+    "Complete a Quest",
 ];
 function achievementCompleteAlert() {
     sfx.play();
+    sfx.currentTime=0;
 }
 function completeAchievement (iff = false,achievement = 0) {
     if(iff && !achievements[achievement]){
@@ -44,9 +49,14 @@ function completeAchievement (iff = false,achievement = 0) {
 function checkAchievementsOnNewBarshmallow(barsh = new Barshmallow) {
     completeAchievement((barsh.shape == 8),3);
     completeAchievement((barsh.texture == 8),4);
+    completeAchievement((barsh.color==4),14);
     completeAchievement((barsh.texture == 8 && barsh.shape == 8 && barsh.luck>0.9 && barsh.height>19),4);
 }
 function apopulateList(plates = [], platesList) {
+    if(plates==null){
+        setTimeout(apopulateList,100);
+        return
+    }
     // platesList = plates.map((plate, i) => {
     //     return plate.div;
     // }).join('');
@@ -71,6 +81,8 @@ function apopulateList(plates = [], platesList) {
     }
     j++;
     // console.log(`I:${i};J:${j};List Length:${platesList.children.length}`);
+    if(platesList==null)
+        return;
     if(j<platesList.children.length)
         while(j<platesList.children.length) {
             platesList.children[j].remove();

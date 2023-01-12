@@ -5,6 +5,22 @@ created by Ririe Nielsen,
 
 inspired by Rhys Nielsen
 
+# Update Alpha 4.2
+
+Swapped Brown for Beige and fixed color accordingly
+
+Removed Buy cooldown
+
+Fixed various bugs to do with achievement loading
+
+Fixed achievement sound from not restarting when several achievements are collected in quick succession
+
+Added Deselect all button
+
+Fixed Barshmallows not being shown as selected
+
+Added Achievement 14
+
 # Update Alpha 4.1
 
 Various bug fixes:
