@@ -5,6 +5,18 @@ created by Ririe Nielsen,
 
 inspired by Rhys Nielsen
 
+# Update Alpha 4.1
+
+Various bug fixes:
+
+    Fixed achievements not loading on startup (Issue #5)
+
+    Fixed bred barshmallows getting wrong IDs (Issue #6)
+
+    Fixed achievements not loading on new game (Issue #4)
+
+Changed the barshmallow pricing scheme (Issue #7)
+
 # Update Alpha 4.0.1
 
 Added changes made in Alpha 4 to the README that didn't get added.

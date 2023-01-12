@@ -10,7 +10,7 @@ const normalImageSrc = "images/normal marshmallow.png";
 //VERSION
 const versionmarker = document.getElementById("versionmarker");
 const JSversion = document.createElement("h4");
-JSversion.innerHTML=("JS Version Alpha 4");
+JSversion.innerHTML=("JS Version Alpha 4.1");
 versionmarker.after(JSversion);
 //GAME
 let sfx = document.getElementById("sfx");
@@ -40,7 +40,7 @@ class Barshmallow {
         this.id=barshmallowId;
         this.div = document.createElement("div");
         this.scrutinized = scrutinized;
-        this.worth = Math.round((this.height*100+(this.color%2)*500+this.shape*100));
+        this.worth = Math.round((this.height*100+((this.color+1)%2)*500+this.shape*100+this.texture*100+(this.luck*1000)));
         console.log(this.id);
         
         this.update();
@@ -295,6 +295,7 @@ function animate() {
         // barshmallows[barshmallows.length-1].createDiv();
         breeding=false;
         breedTime=0;
+        barshmallowId++;
         selected.forEach(s => {
             s = false;
         });
@@ -419,6 +420,7 @@ function load() {
     money = JSON.parse(localStorage.getItem('money'));
     achievements = JSON.parse(localStorage.getItem("achievements"));
     update();
+    achievementsUpdate();
 }
 function newGame() {
     money = 1000;
@@ -427,6 +429,7 @@ function newGame() {
     barshmallowId++;
     buyPrice=100;
     achievements = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,];
+    achievementsUpdate();
     update();
 }
 load();
