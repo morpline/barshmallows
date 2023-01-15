@@ -5,6 +5,56 @@ created by Ririe Nielsen,
 
 inspired by Rhys Nielsen
 
+# Update Alpha 5
+
+Added Store
+
+Added Store Images
+
+Added Planter Box system
+
+    NOTE: This will not remove any barshmallows on old saves, just prevent you from getting more until you have more planter boxes than barshmallows
+
+Added Quest tab
+
+Added Quest System
+
+Added Notification System
+
+Fixed Transparency issue with page icon
+
+Actually Credited Artist for its work (Craiyon.com)
+
+Changed Font
+
+Changed Button Style
+
+Added Message tab, for messaging your customers. (also for introducing lore)
+
+NEW PEOPLE:
+
+    Mr. Smith
+
+        A successful old man who wants you to prove yourself to him as a barshmallow breeder, and maybe get a couple things out of it too. He lives in town, and you see him every once in a while.
+
+    Soop Mahm
+
+        A creepy Indian dude who wants wierd barshmallow pics but pays fairly well. He can barely speak english.
+
+    Azis Anim
+
+        A self-proclaimed 'wizard' who wants the 'essence' of barshmallows for his 'magic'. There may be something behind those claims, though.
+
+    Ard T. Adenina
+
+        A scientist interested in the study of barshmallows, specifically their origin and wether their stange properties can be used for good, like in medicines or technology. 
+
+Mr. Smith is the only one with actual functionality built right now, others will be added eventually.
+
+Added Profile pics from thispersondoesnotexist.com
+
+Fixed breeding again
+
 # Update Alpha 4.2
 
 Swapped Brown for Beige and fixed color accordingly

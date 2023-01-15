@@ -8,44 +8,68 @@
         <meta charset="utf-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <title>Barshmallows</title>
-        <link rel="icon" href="icon.bmp">
+        <link rel="icon" href="icon.png">
         <meta name="description" content="A simple HTML/JS game about breeding, buying, and selling marshmallow-like plants.">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Acme&display=swap" rel="stylesheet">
         <link rel="stylesheet" href="style.css">
     </head>
     <body>
+        <div id="main">
+            
+        </div>
         <header>
             <h1 id="top">Barshmallows</h1>
             <h1 id="bottom">You have -43 barshmallows (if you see this javascript is not working)</h1>
             <h3 id="breedtimer"></h3>
-            <h3 id="achievement"></h3>
         </header>
         <header id="tabs">
             <div class="tab" id="game">Game</div>
             <div class="tab" id="ach">Achievements</div>
+            <div id="stor" class="tab">Store</div>
+            <div id="messTab" class="tab">Messages</div>
+            <div id="quets" class="tab">Quests</div>
         </header>
         <div id="game-tab" class="tabb">
             <div class="actions">
                 <input type="button" value="Breed" id="breed" onclick="breed()">
-                <input type="button" value="Buy" id="buy" onclick="buy()">
                 <input type="button" value="Sell" id="sell" onclick="sell()">
                 <input type="button" value="Scrutinize $100" id="scrutiny" onclick="scrutiny()">
             </div>
-            <div id="inventory">
+            <div id="inventory" class="outline">
                 <p>Inventory</p>
+                <p id="boxes">Boxes: -43</p>
                 <input type="button" value="Refresh" id="refresh" onclick="update()">
                 <input type="button" value="Deselect" id="deselect" onclick="deselect()">
-                <p id="money">Money: $<span id="moneyNumber"></span></p>
-                <div id="barshmallows">
+                <p id="money">Money: $<span class="moneyNumber"></span></p>
+                <div id="barshmallows" class="lists">
                     
                 </div>
             </div>
+        </div>
+        <div id="store-tab" class="tabb">
+            <p>Store</p>
+            <p id="moneyStore">Money: $<span class="moneyNumber">-43</span></p>
+            <p id="boxesStore">Boxes: -43</p>
+            <div class="lists outline">
+                <div>
+                    <img src="/images/marshmallow in a box.png" alt="" srcset="">
+                    <input type="button" value="Buy a Barshmallow" id="buy" onclick="buy()">
+                </div>
+                <div>
+                    <img src="/images/planter box full of marshmallows.png" alt="" srcset="">
+                    <input type="button" value="Buy a Planter box" id="buy" onclick="buyBox()">
+                </div>
+            </div>
+
         </div>
         <div id="achievements-tab" class="tabb">
             <div class="achievements">
                 <p>Achievements</p>
                 <div id="achievements">
+                    <div class="achievement"></div>
                 </div>
             </div>
 
@@ -54,14 +78,14 @@
             <div class="quests">
                 <p>Quests</p>
                 <div id="quests">
-                    <div class="quest">
-                        <p class="header">PERSON requests a barshmallow</p>
+                    <div class="quest outline">
+                        <p class="header">PERSON requests to see</p>
                         <p class="reqs-title">1 barshmallow with:</p>
                         <ul class="reqs">
                             <li class="req">COLOR color</li>
                             <li class="req">TEXTURE texture</li>
                             <li class="req">HEIGHT height</li>
-                            <li class="req">LUCK luck</li>
+                            <li class="req">SHAPE shape</li>
                         </ul>
                         <p class="reward">Reward: $#####</p>
                         <p class="incomplete">incomplete</p>
@@ -69,20 +93,41 @@
                 </div>
             </div>
         </div>
+        <div id="messages-tab" class="tabb">
+            <div id="switcher">
+                <div class="tab" id="mrSmithButton">Mr.Smith</div>
+                <div class="tab hidden" id="ardButton">Ard T. Adenina</div>
+                <div class="tab hidden" id="soopButton">Soop Maam</div>
+                <div class="tab hidden" id="azisButton">Azis Anim</div>
+            </div>
+            <div id="messanger" class="outline">
+                <div id="person" class="messages">
+                    <img src="/images/people/mr.smith.jfif" alt="mrSmith" id="messangerPic">
+                    <p id="name">Mr.Smith</p>
+                    <div id="messages">
+                        <div class="message">-43</div>
+                    </div>
+                </div>
+            </div>
+        </div>
         <audio src="SFX/Achievement_complete.mp3" id="sfx"></audio>
         <audio src="SFX/Initial_Hum_Barshmallows_Theme.mp3" autoplay loop></audio>
         <div class="footer">
-            <p>This game was created by Ririe Nielsen in 2022</p>
+            <p>Made by Ririe Nielsen in 2022-2023</p>
+            <a href="https://craiyon.com">Art by Craiyon</a>
+            <a href="https://thispersondoesnotexist.com">and thispersondoesnotexist.com</a>
             <a href="https://github.com/morpline/barshmallows/issues">Report a bug</a>
             <div class="actions">
                 <input type="button" value="Save" id="save" onclick="save()">
                 <input type="button" value="Load" id="load" onclick="load()">
                 <input type="button" value="New Game" id="newGame" onclick="newGame()">
             </div>
-            <h4 id="versionmarker">HTML Version Alpha 4.2</h4>
+            <h4 id="versionmarker">HTML Version Alpha 5</h4>
         </div>
-        
-        <script src="achievements.js" async defer></script>
-        <script src="script.js" async defer></script>
+        <script src="quests.js" defer></script>
+        <script src="mr.smith.js" defer></script>
+        <script src="messages.js" defer></script>
+        <script src="achievements.js" defer></script>
+        <script src="script.js" defer></script>
     </body>
 </html>

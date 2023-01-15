@@ -15,6 +15,7 @@ var achievements = [
     false,//13 Get the Perfect Barshmallow (>0.9 luck, great shape,polygonal texture,>19 height,)
     false,//14 Get a Biege barshmallow
     false,//15 Complete a Quest
+    false,//16 Buy a planter box
 ];
 const achievementMessages = [
     "Bought a Barshmallow",//done
@@ -33,6 +34,7 @@ const achievementMessages = [
     "Got the perfect barshmallow",//done
     "Got a Biege barshmallows",//done
     "Complete a Quest",
+    "Buy a planter box",
 ];
 function achievementCompleteAlert() {
     sfx.play();
@@ -41,6 +43,7 @@ function achievementCompleteAlert() {
 function completeAchievement (iff = false,achievement = 0) {
     if(iff && !achievements[achievement]){
         achievements[achievement]=true;
+        createNotification(achievementMessages[achievement]+" Complete")
         achievementCompleteAlert();
         achievementsUpdate();
     }
