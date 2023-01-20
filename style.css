@@ -32,7 +32,7 @@ div{
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    width: 630px;
+    width: fit-content;
 }
 .barshmallow {
     width: 300px;
@@ -80,6 +80,7 @@ a:hover{
     align-items: center;
     justify-content: space-evenly;
     background-color: #aaaaaa;
+    flex-wrap: wrap;
 }
 .tabb {
     height:0px;
@@ -88,6 +89,7 @@ a:hover{
 .open {
     height:fit-content;
     scale: 100%;
+    min-height: 100%;
 }
 body.fixed-nav #main {
   position: fixed;

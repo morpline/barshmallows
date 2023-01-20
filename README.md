@@ -5,6 +5,34 @@ created by Ririe Nielsen,
 
 inspired by Rhys Nielsen
 
+# Backstory
+
+You live on a small farm left to you by your grandparents, and all you were left with were two working planter boxes, $1000, and one solitary barshmallow.
+
+(This doesn't affect gameplay at all, this is just for reasons.)
+
+# Update Alpha 5.1
+
+I realize now, after playing for a bit, that broken saves are automatically loading.
+
+Changed it to now default to new game rather than loading
+
+Moved Credits, save/load, and stats to the Settings tab
+
+Refactored quests to make more sense in-game.
+
+Quests now don't show reqs, just queries
+
+Added Soop quests
+
+Fixed quests
+
+598:19242720331136362126333132453414262931382941
+
+Switch to game tab when game loaded
+
+Redid how color is decided in bred barshmallows
+
 # Update Alpha 5
 
 Added Store

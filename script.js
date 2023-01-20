@@ -92,7 +92,7 @@ class Barshmallow {
         
         let barshmallowTexture = document.createElement("p");
         if(this.textured){
-            barshmallowTexture.innerHTML = "Texture: "+textures[this.texture];
+            barshmallowTexture.innerHTML = "Texture: "+(this.texture==-1?"Normal":textures[this.texture]);
         } else {
             barshmallowTexture.innerHTML = "Texture: "+"Normal";
         }
@@ -147,16 +147,19 @@ const achievementTab = document.getElementById("achievements-tab");
 const questTab = document.getElementById("quests-tab");
 const storeTab = document.getElementById("store-tab");
 const messTab = document.getElementById("messages-tab");
+const settsTab = document.getElementById("settings-tab");
 const gamebutton = document.getElementById("game");
 const achbutton = document.getElementById("ach");
 const storebutton = document.getElementById("stor");
 const messbutton = document.getElementById("messTab");
 const questsbutton = document.getElementById("quets");
+const settsbutton = document.getElementById("sett");
 gamebutton.addEventListener("click",() => {mode = 0});
 achbutton.addEventListener("click",() => {mode = 1});
 questsbutton.addEventListener("click",() => {mode = 2});
 storebutton.addEventListener("click",() => {mode = 3});
 messbutton.addEventListener("click",() => {mode = 4});
+settsbutton.addEventListener("click",() => {mode = 5});
 barshmallowId++;
 let numOfBarshmallows = 1;
 let selected= [false];
@@ -292,15 +295,19 @@ function animate() {
     }
     if(breedTime>breedLength && boxes>numOfBarshmallows)
     {
+        let momordad = Math.random();
         let baby = new Barshmallow(
             (barshmallows[breedDad].height*Math.random())/2+(barshmallows[breedMom].height*Math.random())/2,
             
             //Math.round((barshmallows[breedDad].color/2)+(barshmallows[breedMom].color/2)+(Math.random()*2)-1),
+            
             barshmallows[breedDad].color==barshmallows[breedMom].color?
             barshmallows[breedDad].color+Math.round((Math.random()-0.5)*2):
-            (Math.random()>0.5)?
-            barshmallows[breedDad].color:
-            barshmallows[breedMom].color,
+            // (Math.random()>0.5)?
+            // barshmallows[breedDad].color:
+            // barshmallows[breedMom].color,
+
+            Math.round(barshmallows[breedDad].color*momordad+barshmallows[breedMom].color*(1-momordad)),
             
             //Math.round(barshmallows[breedDad].shape+barshmallows[breedMom].shape+Math.random()),
             barshmallows[breedDad].shape==barshmallows[breedMom].shape?
@@ -347,6 +354,7 @@ function animate() {
             questTab.classList.remove("open");
             storeTab.classList.remove("open");
             messTab.classList.remove("open");
+            settsTab.classList.remove("open");
             break;
         case 1:
             gameTab.classList.remove("open");
@@ -354,6 +362,7 @@ function animate() {
             questTab.classList.remove("open");
             storeTab.classList.remove("open");
             messTab.classList.remove("open");
+            settsTab.classList.remove("open");
             break;
         case 2:
             gameTab.classList.remove("open");
@@ -361,6 +370,7 @@ function animate() {
             questTab.classList.add("open");
             storeTab.classList.remove("open");
             messTab.classList.remove("open");
+            settsTab.classList.remove("open");
             break;
         case 3:
             gameTab.classList.remove("open");
@@ -368,6 +378,7 @@ function animate() {
             questTab.classList.remove("open");
             storeTab.classList.add("open");
             messTab.classList.remove("open");
+            settsTab.classList.remove("open");
             break;
         case 4:
             gameTab.classList.remove("open");
@@ -375,6 +386,15 @@ function animate() {
             questTab.classList.remove("open");
             storeTab.classList.remove("open");
             messTab.classList.add("open");
+            settsTab.classList.remove("open");
+            break;
+        case 5:
+            gameTab.classList.remove("open");
+            achievementTab.classList.remove("open");
+            questTab.classList.remove("open");
+            storeTab.classList.remove("open");
+            messTab.classList.remove("open");
+            settsTab.classList.add("open");
             break;
     }
     updateMessanger();
@@ -527,15 +547,16 @@ function load() {
         barshmallowId++;
     })
     let tempQuests = JSON.parse(localStorage.getItem('barshmallows')) || [];
-    tempQuests.forEach(bjec => {
+    tempQuests.forEach(bjqc => {
         // selected.push
-        quests.push(convertGenericObjectToQuest(bjec));
+        quests.push(convertGenericObjectToQuest(bjqc));
     })
     smithIndex = JSON.parse(localStorage.getItem('smithindex'));
     buyPrice = JSON.parse(localStorage.getItem('buyPrice'));
     money = JSON.parse(localStorage.getItem('money'));
     achievements = JSON.parse(localStorage.getItem("achievements")) || [false,false,false];
     boxes = JSON.parse(localStorage.getItem("boxes")) || 2;
+    mode=0;
     update();
     achievementsUpdate();
 }
@@ -547,14 +568,12 @@ function newGame() {
     boxes=2;
     buyPrice=100;
     achievements = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
+    smithIndex=0;
+    soopIndex=0;
     achievementsUpdate();
     update();
 }
 //load();
-if(money == null)
-{
-    newGame();
-    save();
-}
+newGame();
 
 animateQuests();

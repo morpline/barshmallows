@@ -25,25 +25,38 @@ class Quest {
     update(){
         this.div.innerHTML = 
         `<p class="header">${people[this.person]} requests to see</p>
-        <p class="reqs-title">${this.count} barshmallow with:</p>
-        <ul class="reqs">
-            <li class="req">${this.color==-1?"any":colors[this.color]} color</li>
-            <li class="req">${this.texture==-1?"any":textures[this.texture]} texture</li>
-            <li class="req">${this.height==-1?"any":Math.round(this.height)} height</li>
-            <li class="req">${this.shape==-1?"any":shapes[this.shape]} shape</li>
-        </ul>
+        <p class="reqs-title">${this.count} barshmallow</p>
+        <p class="message">${this.message}</p>
         <p class="reward">Reward: $${this.reward}</p>
-        <p class="message">${this.message}</p>`;
+        `;
 
     }
     isComplete(barsh = new Barshmallow()){
+        if(this.complete)
+            return;
+        // console.log("Checking...");
+        // console.log("complete?");
+        // console.log(this.color!=-1?barsh.color == this.color:true);
+        // console.log(this.texture!=-1?barsh.texture == this.texture:true);
+        // console.log(this.shape!=-1?barsh.shape == this.shape:true);
+        // console.log(this.height!=-1?Math.round(barsh.height) == Math.round(this.height):true);
         if(
-            this.color!=-1 && barsh.color == this.color &&
-            this.texture!=-1 && barsh.texture == this.texture &&
-            this.shape!=-1 && barsh.shape == this.shape &&
-            this.height!=-1 && Math.round(barsh.height) == Math.round(this.height) 
+            this.color!=-1?barsh.color == this.color:true &&
+            this.texture!=-1?barsh.texture == this.texture:true &&
+            this.shape!=-1?barsh.shape == this.shape:true &&
+            this.height!=-1?Math.round(barsh.height) == Math.round(this.height):true  &&
+            barsh.visible
         ) {
+            // console.log("yes");
             this.complete = true;
+            this.div.innerHTML = 
+            `<p class="header">${people[this.person]} requests to see</p>
+            <p class="reqs-title">${this.count} barshmallow</p>
+            <p class="message">${this.message}</p>
+            <p class="reward">Quest Completed</p>
+            `;
+        } else {
+            // console.log("false");
         }
     }
 }
@@ -96,16 +109,19 @@ function checkQuests() {
     quests.forEach((q,i) => {
         if(q.complete)
         {
-            if(q.collected)
+            if(!q.collected)
             {
                 money+=q.reward;
                 q.collected=true;
                 q.after();
+                createNotification("Quest Completed, Reward: $"+q.reward);
             }
-            createNotification("Quest Completed, Reward: $"+q.reward);
             //quests.splice(i,1);
         }
     })
+}
+function checkQuestsOnSell(b) {
+    
 }
 let questTimer = 0;
 //every 100000 frames, a new quest will appear
@@ -123,6 +139,7 @@ function newRandomQuest() {
 function updateQuests() {
     qpopulateList(quests,questsContainer);
     checkQuests();
+    // console.log("quests updated");
 }
 function animateQuests() {
     requestAnimationFrame(animateQuests);

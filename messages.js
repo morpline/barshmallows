@@ -36,6 +36,30 @@ function updateSmith () {
     mpopulateList(smithMessages,messages,smithIndex);
     
 }
+
+function updatesoop () {
+    //Copy this function for all the people added and put in the correct variables.
+    //See mr.smith.js for the proper syntax.
+    //Required:
+    //messages = string[]
+    //quests = Quest[]
+    //index = int
+    //when to add quests = int[]
+    //can talk = bool[]
+    //picture = string (filepath to picture)
+
+    //I know this way of doing it is lazy, but I dont want to make a Message class.
+    if(!soopUnlocked)
+        return;
+    
+    
+    soopButton.classList.remove(".hidden");
+    
+    messangerPic.src = soopPicture;
+    nameShower.textContent = "Soop Maam";
+    mpopulateList(soopMessages,messages,soopIndex);
+    
+}
 function mpopulateList(plates = [], platesList,index = 0) {
     //yes this function is in almost all the .js files.
     // platesList = plates.map((plate, i) => {
@@ -76,11 +100,16 @@ function updateMessanger() {
         case 0:
             updateSmith();
             break;
-    
+        case 1:
+            updatesoop();
+            break;
+        
         default:
             updateSmith();
             break;
     }
+}
+function next() {
     if(canSmithTalk[smithIndex])
     {
         smithIndex++;
@@ -91,7 +120,22 @@ function updateMessanger() {
         {
             quests.push(smithQuests[i]);
             updateQuests();
-            createNotification("New Quest from Mr. Smith")
+            createNotification("New Quest from Mr. Smith");
+            smithIndex++;
+        }
+    })
+    if(cansoopTalk[soopIndex])
+    {
+        soopIndex++;
+        createNotification("New message from Soop Maam");
+    }
+    whenToAddsoopQuests.forEach((q,i) => {
+        if(soopIndex==q)
+        {
+            quests.push(soopQuests[i]);
+            updateQuests();
+            createNotification("New Quest from Soop Maam");
+            soopIndex++;
         }
     })
 }

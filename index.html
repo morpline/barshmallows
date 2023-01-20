@@ -31,6 +31,7 @@
             <div id="stor" class="tab">Store</div>
             <div id="messTab" class="tab">Messages</div>
             <div id="quets" class="tab">Quests</div>
+            <div id="sett" class="tab">Settings</div>
         </header>
         <div id="game-tab" class="tabb">
             <div class="actions">
@@ -79,16 +80,7 @@
                 <p>Quests</p>
                 <div id="quests">
                     <div class="quest outline">
-                        <p class="header">PERSON requests to see</p>
-                        <p class="reqs-title">1 barshmallow with:</p>
-                        <ul class="reqs">
-                            <li class="req">COLOR color</li>
-                            <li class="req">TEXTURE texture</li>
-                            <li class="req">HEIGHT height</li>
-                            <li class="req">SHAPE shape</li>
-                        </ul>
-                        <p class="reward">Reward: $#####</p>
-                        <p class="incomplete">incomplete</p>
+                        <p class="header">You have no quests</p>
                     </div>
                 </div>
             </div>
@@ -102,21 +94,24 @@
             </div>
             <div id="messanger" class="outline">
                 <div id="person" class="messages">
-                    <img src="/images/people/mr.smith.jfif" alt="mrSmith" id="messangerPic">
+                    <img src="images/people/mr.smith.jfif" alt="mrSmith" id="messangerPic">
                     <p id="name">Mr.Smith</p>
                     <div id="messages">
                         <div class="message">-43</div>
                     </div>
                 </div>
+                <input type="button" value="Next" onclick="next()">
             </div>
         </div>
         <audio src="SFX/Achievement_complete.mp3" id="sfx"></audio>
         <audio src="SFX/Initial_Hum_Barshmallows_Theme.mp3" autoplay loop></audio>
-        <div class="footer">
+        <div id="settings-tab" class="tabb">
             <p>Made by Ririe Nielsen in 2022-2023</p>
+            <p>Music by Ririe Nielsen</p>
             <a href="https://craiyon.com">Art by Craiyon</a>
             <a href="https://thispersondoesnotexist.com">and thispersondoesnotexist.com</a>
             <a href="https://github.com/morpline/barshmallows/issues">Report a bug</a>
+            <p class="outline">Saving is currently discouraged as it will not save or load quests properly.</p>
             <div class="actions">
                 <input type="button" value="Save" id="save" onclick="save()">
                 <input type="button" value="Load" id="load" onclick="load()">
@@ -126,6 +121,7 @@
         </div>
         <script src="quests.js" defer></script>
         <script src="mr.smith.js" defer></script>
+        <script src="soop.js" defer></script>
         <script src="messages.js" defer></script>
         <script src="achievements.js" defer></script>
         <script src="script.js" defer></script>

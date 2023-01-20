@@ -25,13 +25,17 @@ let smithMessages = [
     "She told me her favorite was a big fluffy one.",
     "She told me she doesn't have any photos of it, so can you get me a replica?",
     "Many thanks, you may have saved my marriage.",
-    "Editor's note: This is the end of version Alpha 5."//25
 ];
 let smithQuests = [
     new Quest(0,500,-1,-1,0,-1,1,()=>{smithIndex++;},"Show me a Lumpy Barshmallow."),
-    new Quest(0,1000,-1,8,-1,-1,1,()=>{smithIndex++;},"Show me a Cyan Barshmallow."),
-    new Quest(0,1500,-1,9,1,4,1,()=>{smithIndex++;},"This is what her favorite barshmallow as a child was."),
-    new Quest(0,2500,20,-1,4,-1,1,()=>{smithIndex++;},"This is what her favorite actually was.")
+    new Quest(0,1000,-1,8,-1,-1,1,()=>{
+        smithIndex++;
+        soopUnlocked=true;
+        createNotification("Soop Maam messaged you.");
+        soopIndex++;
+    },"Show me a Cyan Barshmallow."),
+    new Quest(0,1500,-1,9,1,4,1,()=>{smithIndex++;soopIndex++;},"This is what her favorite barshmallow as a child was."),
+    new Quest(0,2500,20,-1,4,-1,1,()=>{smithIndex++;soopIndex++;},"This is what her favorite actually was.")
 ]
 let canSmithTalk = [
     true,//0
@@ -45,7 +49,7 @@ let canSmithTalk = [
     true,
     false,//Cyan
     true,//10
-    true,//   MAKE THIS FALSE WHEN ANOTHER PERSON IS ADDED
+    false,//   MAKE THIS FALSE WHEN ANOTHER PERSON IS ADDED
     //        IM LEAVING THIS AS TRUE SO THERE ARE QUESTS TO DO
     //        AND IT DOESNT GET SOFTLOCKED (YET)
     true,
@@ -60,7 +64,6 @@ let canSmithTalk = [
     true,
     false,//favorite 2
     true,
-    false//end 25
 ];
 let smithIndex = 0;
 let whenToAddSmithQuests = [
@@ -71,4 +74,4 @@ let whenToAddSmithQuests = [
     14,//Favorite 1
     21//Favorite 2
 ];
-let smithPicture = "/images/people/mr.smith.jfif";
+let smithPicture = "images/people/mr.smith.jfif";
