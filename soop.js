@@ -25,10 +25,10 @@ let soopMessages = [
     "Yo uknows how it id."
 ];
 let soopQuests = [
-    new Quest(1,3961,-1,0,-1,-1,1,()=>{soopIndex++;},"Get me a pitcure of a yellow basrhmallow."),
-    new Quest(1,1497,-1,7,-1,2,1,()=>{soopIndex++;smithIndex++;},"I need pictrure of a green circle barshmallow, ok?"),
-    new Quest(1,1803,-1,3,-1,2,1,()=>{soopIndex++;},"Now get me a orznge domut"),
-    new Quest(1,3666,20,-1,-1,-1,1,()=>{soopIndex++;},"PLEES SEND PIC O F BI G HBARSHMALLWO NOW!!1")
+    new Quest(1,3961,-1,0,-1,-1,1,3,"Get me a pitcure of a yellow basrhmallow."),
+    new Quest(1,1497,-1,7,-1,2,1,2,"I need pictrure of a green circle barshmallow, ok?"),
+    new Quest(1,1803,-1,3,-1,2,1,3,"Now get me a orznge domut"),
+    new Quest(1,3666,20,-1,-1,-1,1,3,"PLEES SEND PIC O F BI G HBARSHMALLWO NOW!!1")
 ];
 let cansoopTalk = [
     false,

@@ -5,8 +5,23 @@ const people = [
     "Ard T. Adenina"
 ];
 
+const questFunctions = [
+    //these functions are what are done at the end of a quest
+    //just put the id(index) of the function you want to call in the 
+    // "after" field in the constructor
+    ()=>{smithIndex++;},//0
+    ()=>{
+        smithIndex++;
+        soopUnlocked=true;
+        createNotification("Soop Maam messaged you.");
+        soopIndex++;
+    },//1
+    ()=>{smithIndex++;soopIndex++;},//2
+    ()=>{soopIndex++;},//3
+]
+
 class Quest {
-    constructor (person,reward,height=-1,color=-1,texture=-1,shape=-1,count=1,after = function(){},message = "")
+    constructor (person,reward,height=-1,color=-1,texture=-1,shape=-1,count=1,after = -1,message = "")
     {
         this.person = person;
         this.reward = reward;
@@ -102,18 +117,28 @@ function convertGenericObjectToQuest({person,reward,height,color,texture,shape,c
 }
 const questsContainer = document.getElementById("quests");
 let quests = [];
-function checkQuests() {
+function checkQuests(arrat) {
+    console.log("checking quests");
+    console.log(arrat);
+    if(arrat.length === 0) {
+        return;
+    }
+    console.log(arrat.length);
     barshmallows.forEach(b => {
-        quests.forEach(q => q.isComplete(b));
+        arrat.forEach(q => {
+            if(!q)
+                return;
+            q.isComplete(b)
+        });
     });
-    quests.forEach((q,i) => {
+    arrat.forEach((q,i) => {
         if(q.complete)
         {
             if(!q.collected)
             {
                 money+=q.reward;
                 q.collected=true;
-                q.after();
+                questFunctions[q.after]();
                 createNotification("Quest Completed, Reward: $"+q.reward);
             }
             //quests.splice(i,1);
@@ -138,7 +163,21 @@ function newRandomQuest() {
 }
 function updateQuests() {
     qpopulateList(quests,questsContainer);
-    checkQuests();
+    checkQuests(quests);
+    checkQuests(smithQuests.map((q,i)=>{
+        if(smithIndex>whenToAddSmithQuests[i])
+        {
+            return q;
+        } else {
+            return null;
+        }
+    }));
+    checkQuests(soopQuests.map((q,i)=>{
+        if(soopIndex>whenToAddsoopQuests[i])
+        {
+            return q;
+        }
+    }));
     // console.log("quests updated");
 }
 function animateQuests() {

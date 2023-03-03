@@ -10,7 +10,7 @@ const normalImageSrc = "images/normal marshmallow.png";
 //VERSION
 const versionmarker = document.getElementById("versionmarker");
 const JSversion = document.createElement("h4");
-JSversion.innerHTML=("JS Version Alpha 5");
+JSversion.innerHTML=("JS Version Alpha 5.2");
 versionmarker.after(JSversion);
 //GAME
 let sfx = document.getElementById("sfx");
@@ -525,37 +525,49 @@ function fixNav() {
 createNotification("Welcome to Barshmallows!")
 window.addEventListener('scroll', fixNav);
 //Save FUNCTIONS
+function quicksave(string,value){
+    localStorage.setItem(string, JSON.stringify(value));
+}
+function quickload(string){
+    return JSON.parse(localStorage.getItem(string));
+}
 function save() {
     //save barshmallows[], money
     //set_cookie("save",money,60);
-    localStorage.setItem('barshmallows', JSON.stringify(barshmallows));
-    localStorage.setItem('money', JSON.stringify(money));
-    localStorage.setItem('achievements', JSON.stringify(achievements));
-    localStorage.setItem('buyPrice', JSON.stringify(buyPrice));
-    localStorage.setItem('boxes', JSON.stringify(boxes));
-    localStorage.setItem('smithindex', JSON.stringify(smithIndex));
-    localStorage.setItem('quests', JSON.stringify(quests));
+    quicksave("barshmallows",barshmallows);
+    quicksave('money',money);
+    quicksave('achievements',achievements);
+    quicksave('buyPrice',buyPrice);
+    quicksave('boxes',boxes);
+    quicksave('smithindex',smithIndex);
+    quicksave('quests',quests);
+    quicksave("smithquests",smithQuests);
+    quicksave("soopquests",soopquests);
+}
+function loadQuests(questsToLoadStringName,arrayToAddTo){
+    let tempQuests = JSON.parse(localStorage.getItem(questsToLoadStringName)) || [];
+    tempQuests.forEach(bjqc => {
+        // selected.push
+        arrayToAddTo.push(convertGenericObjectToQuest(bjqc));
+    })
 }
 function load() {
     //load save
     barshmallows = [];
     barshmallowId=0;
-    let tempBarshes = JSON.parse(localStorage.getItem('barshmallows')) || [];
+    let tempBarshes = quickload('barshmallows') || [];
     tempBarshes.forEach(bjec => {
         // selected.push
         barshmallows.push(convertGenericObjectToBarshmallow(bjec));
         barshmallowId++;
     })
-    let tempQuests = JSON.parse(localStorage.getItem('barshmallows')) || [];
-    tempQuests.forEach(bjqc => {
-        // selected.push
-        quests.push(convertGenericObjectToQuest(bjqc));
-    })
-    smithIndex = JSON.parse(localStorage.getItem('smithindex'));
-    buyPrice = JSON.parse(localStorage.getItem('buyPrice'));
-    money = JSON.parse(localStorage.getItem('money'));
-    achievements = JSON.parse(localStorage.getItem("achievements")) || [false,false,false];
-    boxes = JSON.parse(localStorage.getItem("boxes")) || 2;
+    loadQuests("quests",quests);
+    loadQuests("smithquests",smithQuests);
+    smithIndex = quickload("smithindex");
+    buyPrice = quickload('buyPrice');
+    money = quickload('money');
+    achievements = quickload("achievements") || [false,false,false];
+    boxes = quickload("boxes") || 2;
     mode=0;
     update();
     achievementsUpdate();
@@ -570,6 +582,7 @@ function newGame() {
     achievements = [false,false,false,false,false,false,false,false,false,false,false,false,false,false,false,false];
     smithIndex=0;
     soopIndex=0;
+    smithQuests = smithstartquests.map(q=>{return q;});
     achievementsUpdate();
     update();
 }

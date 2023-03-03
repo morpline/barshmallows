@@ -11,6 +11,16 @@ You live on a small farm left to you by your grandparents, and all you were left
 
 (This doesn't affect gameplay at all, this is just for reasons.)
 
+# Update Alpha 5.2
+
+Added Oddtext functions, (https://morpline.github.io/oddtext/)
+
+Fixed quests
+
+Made the quest system simpler and more complicated internally
+
+Various code cleanups and formatting
+
 # Update Alpha 5.1
 
 I realize now, after playing for a bit, that broken saves are automatically loading.

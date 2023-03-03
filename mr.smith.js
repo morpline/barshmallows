@@ -26,17 +26,13 @@ let smithMessages = [
     "She told me she doesn't have any photos of it, so can you get me a replica?",
     "Many thanks, you may have saved my marriage.",
 ];
-let smithQuests = [
-    new Quest(0,500,-1,-1,0,-1,1,()=>{smithIndex++;},"Show me a Lumpy Barshmallow."),
-    new Quest(0,1000,-1,8,-1,-1,1,()=>{
-        smithIndex++;
-        soopUnlocked=true;
-        createNotification("Soop Maam messaged you.");
-        soopIndex++;
-    },"Show me a Cyan Barshmallow."),
-    new Quest(0,1500,-1,9,1,4,1,()=>{smithIndex++;soopIndex++;},"This is what her favorite barshmallow as a child was."),
-    new Quest(0,2500,20,-1,4,-1,1,()=>{smithIndex++;soopIndex++;},"This is what her favorite actually was.")
-]
+let smithstartquests = [
+    new Quest(0,500,-1,-1,0,-1,1,0,"Show me a Lumpy Barshmallow."),
+    new Quest(0,1000,-1,8,-1,-1,1,1,"Show me a Cyan Barshmallow."),
+    new Quest(0,1500,-1,9,1,4,1,2,"This is what her favorite barshmallow as a child was."),
+    new Quest(0,2500,20,-1,4,-1,1,2,"This is what her favorite actually was.")
+];
+let smithQuests = smithstartquests.map(q=>{return q;});
 let canSmithTalk = [
     true,//0
     true,
