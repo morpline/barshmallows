@@ -10,7 +10,7 @@ const normalImageSrc = "images/normal marshmallow.png";
 //VERSION
 const versionmarker = document.getElementById("versionmarker");
 const JSversion = document.createElement("h4");
-JSversion.innerHTML=("JS Version Alpha 5.2");
+JSversion.innerHTML=("JS Version Alpha 5.2.1");
 versionmarker.after(JSversion);
 //GAME
 let sfx = document.getElementById("sfx");

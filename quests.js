@@ -132,16 +132,19 @@ function checkQuests(arrat) {
         });
     });
     arrat.forEach((q,i) => {
-        if(q.complete)
-        {
-            if(!q.collected)
+        if(q != null ){
+
+            if(q.complete)
             {
-                money+=q.reward;
-                q.collected=true;
-                questFunctions[q.after]();
-                createNotification("Quest Completed, Reward: $"+q.reward);
+                if(!q.collected)
+                {
+                    money+=q.reward;
+                    q.collected=true;
+                    questFunctions[q.after]();
+                    createNotification("Quest Completed, Reward: $"+q.reward);
+                }
+                //quests.splice(i,1);
             }
-            //quests.splice(i,1);
         }
     })
 }
